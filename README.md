@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# Nested Biological Systems Visualization
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This project is an interactive visualization of nested biological systems, demonstrating the complex interactions and interdependencies between different levels of biological organization: from cells to ecosystems. It's built using React and SVG, providing a dynamic and engaging way to explore how lower-level biological processes contribute to higher-level outcomes.
 
-In the project directory, you can run:
+## Key Features
 
-### `npm start`
+- Hierarchical representation of four biological levels: Cells, Organisms, Species, and Ecosystem
+- Dynamic simulation of entity health, resources, and populations
+- Color-coded visualization of entity health and activity
+- Interactive hover functionality for detailed entity information
+- Simulation of resource competition, adaptation, extinction, and evolution
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## System Interactions
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Cell Level
+- Entities: Individual cells
+- Properties: Health, Resource
+- Optimization: Energy efficiency and reproduction
+- Interactions: Cells manage resources and adapt to a simulated environmental cycle
 
-### `npm test`
+### Organism Level
+- Entities: Individual organisms
+- Properties: Health
+- Optimization: Survival and growth
+- Interactions: Organism health is determined by the collective health of its constituent cells
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Species Level
+- Entities: Different species
+- Properties: Health, Population
+- Optimization: Population growth and genetic diversity
+- Interactions: Species can go extinct if population drops to zero, and new species can evolve
 
-### `npm run build`
+### Ecosystem Level
+- Entities: The overall ecosystem
+- Properties: Health, Biodiversity
+- Optimization: Biodiversity and stability
+- Interactions: Ecosystem health depends on the number and health of species
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Code Structure
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The main component, `FocusedNestedSystemsViz`, manages the state and rendering of the visualization:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- `initialLevels`: Defines the initial state and behavior of each biological level
+- `useEffect` hook: Manages the simulation loop, updating entity states over time
+- `renderEntities` and `renderLevel` functions: Handle the SVG rendering of entities and levels
+- Interactive elements: Hover functionality and pause/resume button
 
-### `npm run eject`
+## Mathematical Model
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Each level's entities are updated based on their current state and the state of the level below:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Cell health = previous health + resource factor + environmental factor
+- Organism health = previous health + cell health factor
+- Species health = previous health + organism health factor
+- Species population = previous population + health factor
+- Ecosystem health = weighted average of previous health and species health
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Getting Started
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Clone the repository
+2. Install dependencies with `npm install`
+3. Run the development server with `npm start`
+4. Open [http://localhost:3000](http://localhost:3000) to view it in the browser
 
-## Learn More
+## Customization
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+You can customize various aspects of the simulation:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Adjust the number of entities at each level in the `initialLevels` object
+- Modify the `calculate` functions to change how entities interact and evolve
+- Alter the color schemes in the `colorSchemes` object for different visual representations
 
-### Code Splitting
+## Future Enhancements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Add user controls to adjust simulation parameters
+- Implement more complex inter-entity interactions within levels
+- Create detailed views for examining specific entities or levels
+- Add time-series data visualization for long-term trend analysis
